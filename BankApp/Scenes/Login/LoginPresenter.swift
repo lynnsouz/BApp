@@ -12,19 +12,16 @@
 
 import UIKit
 
-protocol LoginPresentationLogic
-{
+protocol LoginPresentationLogic {
     func presentCreateLogin(response: Login.CreateLogin.Response)
 }
 
-class LoginPresenter: LoginPresentationLogic
-{
+class LoginPresenter: LoginPresentationLogic {
     weak var viewController: LoginDisplayLogic?
     
     // MARK: Do something
     
-    func presentCreateLogin(response: Login.CreateLogin.Response)
-    {
+    func presentCreateLogin(response: Login.CreateLogin.Response) {
         var viewModel = Login.CreateLogin.ViewModel()
         viewModel.error = response.error
         viewModel.userAccount = response.userAccount

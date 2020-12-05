@@ -12,14 +12,12 @@
 
 import UIKit
 
-protocol ListStatementPresentationLogic
-{
+protocol ListStatementPresentationLogic {
     func presentFetchStatement(response: ListStatement.FetchStatement.Response)
     func presentUserAccount(response: ListStatement.UserAccountInfo.Response)
 }
 
-class ListStatementPresenter: ListStatementPresentationLogic
-{
+class ListStatementPresenter: ListStatementPresentationLogic {
     weak var viewController: ListStatementDisplayLogic?
     
     let currencyFormatter: NumberFormatter = {
@@ -47,8 +45,7 @@ class ListStatementPresenter: ListStatementPresentationLogic
     
     // MARK: Fetch Statement
     
-    func presentFetchStatement(response: ListStatement.FetchStatement.Response)
-    {
+    func presentFetchStatement(response: ListStatement.FetchStatement.Response) {
         var displayedStatement: [ListStatement.FetchStatement.ViewModel.DisplayedStatement] = []
         response.statements.sorted(by: {$0.date > $1.date}).forEach({
             let title = $0.title

@@ -12,18 +12,15 @@
 
 import UIKit
 
-@objc protocol ListStatementRoutingLogic
-{
+@objc protocol ListStatementRoutingLogic {
   func routeBackToLogin()
 }
 
-protocol ListStatementDataPassing
-{
+protocol ListStatementDataPassing {
   var dataStore: ListStatementDataStore? { get }
 }
 
-class ListStatementRouter: NSObject, ListStatementRoutingLogic, ListStatementDataPassing
-{
+class ListStatementRouter: NSObject, ListStatementRoutingLogic, ListStatementDataPassing {
   weak var viewController: ListStatementViewController?
   var dataStore: ListStatementDataStore?
   

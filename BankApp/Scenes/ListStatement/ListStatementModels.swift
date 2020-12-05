@@ -12,12 +12,10 @@
 
 import UIKit
 
-enum ListStatement
-{
+enum ListStatement {
     // MARK: Use cases
     
-    enum FetchStatement
-    {
+    enum FetchStatement {
         struct Request
         {
         }
@@ -38,8 +36,7 @@ enum ListStatement
         }
     }
     
-    enum UserAccountInfo
-    {
+    enum UserAccountInfo {
         struct Request
         {
         }
@@ -61,8 +58,7 @@ enum ListStatement
         }
     }
     
-    enum Something
-    {
+    enum Something {
         struct Request
         {
         }

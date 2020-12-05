@@ -12,18 +12,15 @@
 
 import UIKit
 
-protocol LoginBusinessLogic
-{
+protocol LoginBusinessLogic {
     func createLogin(request: Login.CreateLogin.Request)
 }
 
-protocol LoginDataStore
-{
+protocol LoginDataStore {
     var userAccount: UserAccount? { get set }
 }
 
-class LoginInteractor: LoginBusinessLogic, LoginDataStore
-{
+class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     var presenter: LoginPresentationLogic?
     
     var userWorker: UserWorker = UserWorker(loginStore: LoginAPI())
@@ -31,8 +28,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore
     
     // MARK: Login User
     
-    func createLogin(request: Login.CreateLogin.Request)
-    {
+    func createLogin(request: Login.CreateLogin.Request) {
         let user = User(user: request.loginFromFields.login, password: request.loginFromFields.password)
         userWorker.loginStore.loginUser(user) { (userAcount, storeError) in
             let response = Login.CreateLogin.Response(userAccount: userAcount, error: storeError)

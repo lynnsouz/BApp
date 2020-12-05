@@ -12,17 +12,14 @@
 
 import UIKit
 
-enum Login
-{
-    struct LoginFromFields
-    {
+enum Login {
+    struct LoginFromFields {
         // MARK: User info
         var login: String
         var password: String
     }
     
-    enum CreateLogin
-    {
+    enum CreateLogin {
         struct Request
         {
             var loginFromFields: LoginFromFields

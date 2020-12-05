@@ -12,36 +12,31 @@
 
 import UIKit
 
-protocol ListStatementDisplayLogic: class
-{
+protocol ListStatementDisplayLogic: class {
     func displayUserAccountInfo(viewModel: ListStatement.UserAccountInfo.ViewModel)
     func displayFetchedStatement(viewModel: ListStatement.FetchStatement.ViewModel)
 }
 
-class ListStatementViewController: UIViewController, ListStatementDisplayLogic, UITableViewDataSource, UITableViewDelegate
-{
+class ListStatementViewController: UIViewController, ListStatementDisplayLogic {
     
     var interactor: ListStatementBusinessLogic?
     var router: (NSObjectProtocol & ListStatementRoutingLogic & ListStatementDataPassing)?
     
     // MARK: Object lifecycle
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-    {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
     
-    required init?(coder aDecoder: NSCoder)
-    {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
     
     // MARK: Setup
     
-    private func setup()
-    {
+    private func setup() {
         let viewController = self
         let interactor = ListStatementInteractor()
         let presenter = ListStatementPresenter()
@@ -56,8 +51,7 @@ class ListStatementViewController: UIViewController, ListStatementDisplayLogic, 
     
     // MARK: Routing
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             if let router = router, router.responds(to: selector) {
@@ -68,8 +62,7 @@ class ListStatementViewController: UIViewController, ListStatementDisplayLogic, 
     
     // MARK: View lifecycle
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         showUserAccountInfo()
         startLoadingAnimation()
@@ -90,14 +83,12 @@ class ListStatementViewController: UIViewController, ListStatementDisplayLogic, 
     var displayedStatement: [ListStatement.FetchStatement.ViewModel.DisplayedStatement] = []
     var displayedStatementSection: [String] = []
     
-    func fetchStatement()
-    {
+    func fetchStatement() {
         let request = ListStatement.FetchStatement.Request()
         interactor?.fetchStatement(request: request)
     }
     
-    func displayFetchedStatement(viewModel: ListStatement.FetchStatement.ViewModel)
-    {
+    func displayFetchedStatement(viewModel: ListStatement.FetchStatement.ViewModel) {
         self.displayedStatement = viewModel.displayedStatement
         viewModel.displayedStatement.forEach({self.displayedStatementSection.append($0.dateAsDate.monthAndYear)})
         self.displayedStatementSection = Array(Set(self.displayedStatementSection))
@@ -106,9 +97,42 @@ class ListStatementViewController: UIViewController, ListStatementDisplayLogic, 
         tableView.reloadData()
     }
     
-    // MARK: - Table view, data source and delegate
+    // MARK: - Update UserInfo
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var agencyLabel: UILabel!
+    @IBOutlet weak var bankAccountLabel: UILabel!
+    @IBOutlet weak var balanceLabel: UILabel!
     
+    func showUserAccountInfo() {
+        let userAccount = ListStatement.UserAccountInfo.Request()
+        interactor?.fetchUserAccount(request: userAccount)
+    }
+    
+    func displayUserAccountInfo(viewModel: ListStatement.UserAccountInfo.ViewModel) {
+        let user = viewModel.displayedUserAccount
+        nameLabel.text = user.name
+        agencyLabel.text = user.agency
+        bankAccountLabel.text = user.bankAccount
+        balanceLabel.text = user.balance
+    }
+    
+    // MARK: Error handling
+    
+    private func askLogoutAlert(title: String, message: String, actionHandler: ((UIAlertAction) -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Cancelar", style: .default, handler: nil)
+        let alertCancelAction = UIAlertAction(title: "Sair", style: .destructive, handler: actionHandler)
+        alertController.addAction(alertAction)
+        alertController.addAction(alertCancelAction)
+        showDetailViewController(alertController, sender: nil)
+    }
+    
+    // MARK: - Table view, data source and delegate
     @IBOutlet weak var tableView: UITableView!
+    
+}
+
+extension ListStatementViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return displayedStatementSection.count
@@ -155,36 +179,5 @@ class ListStatementViewController: UIViewController, ListStatementDisplayLogic, 
         
         cell.statement = statement
         return cell
-    }
-    
-    // MARK: - Update UserInfo
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var agencyLabel: UILabel!
-    @IBOutlet weak var bankAccountLabel: UILabel!
-    @IBOutlet weak var balanceLabel: UILabel!
-    
-    func showUserAccountInfo() {
-        let userAccount = ListStatement.UserAccountInfo.Request()
-        interactor?.fetchUserAccount(request: userAccount)
-    }
-    
-    func displayUserAccountInfo(viewModel: ListStatement.UserAccountInfo.ViewModel) {
-        let user = viewModel.displayedUserAccount
-        nameLabel.text = user.name
-        agencyLabel.text = user.agency
-        bankAccountLabel.text = user.bankAccount
-        balanceLabel.text = user.balance
-    }
-    
-    // MARK: Error handling
-    
-    private func askLogoutAlert(title: String, message: String, actionHandler: ((UIAlertAction) -> Void)? = nil)
-    {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Cancelar", style: .default, handler: nil)
-        let alertCancelAction = UIAlertAction(title: "Sair", style: .destructive, handler: actionHandler)
-        alertController.addAction(alertAction)
-        alertController.addAction(alertCancelAction)
-        showDetailViewController(alertController, sender: nil)
     }
 }

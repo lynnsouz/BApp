@@ -12,6 +12,5 @@
 
 import UIKit
 
-class ListStatementWorker
-{
+class ListStatementWorker {
 }

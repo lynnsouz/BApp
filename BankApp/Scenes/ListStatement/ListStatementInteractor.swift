@@ -12,21 +12,19 @@
 
 import UIKit
 
-protocol ListStatementBusinessLogic
-{
+protocol ListStatementBusinessLogic {
     func fetchStatement(request: ListStatement.FetchStatement.Request)
     func fetchUserAccount(request: ListStatement.UserAccountInfo.Request)
 }
 
-protocol ListStatementDataStore
-{
+protocol ListStatementDataStore {
     var userAccount: UserAccount! { get set }
     var statements: [Statement]? { get set }
 }
 
-class ListStatementInteractor: ListStatementBusinessLogic, ListStatementDataStore
-{
+class ListStatementInteractor: ListStatementBusinessLogic, ListStatementDataStore {
     var presenter: ListStatementPresentationLogic?
+    var worker: ListStatementWorker?
     
     var statementWorker = StatementWorker(statementStore: StatementAPI())
     var statements: [Statement]?
@@ -34,8 +32,7 @@ class ListStatementInteractor: ListStatementBusinessLogic, ListStatementDataStor
     
     // MARK: Fetch
     
-    func fetchStatement(request: ListStatement.FetchStatement.Request)
-    {
+    func fetchStatement(request: ListStatement.FetchStatement.Request) {
         statementWorker.fetchOrders { (statements) in
             self.statements = statements
             let response = ListStatement.FetchStatement.Response(statements: statements)
@@ -43,8 +40,7 @@ class ListStatementInteractor: ListStatementBusinessLogic, ListStatementDataStor
         }
     }
     
-    func fetchUserAccount(request: ListStatement.UserAccountInfo.Request)
-    {
+    func fetchUserAccount(request: ListStatement.UserAccountInfo.Request) {
         let response = ListStatement.UserAccountInfo.Response(userAccount: userAccount)
         self.presenter?.presentUserAccount(response: response)
         
