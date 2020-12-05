@@ -1,8 +1,7 @@
 @testable import BankApp
 import XCTest
 
-class LoginAPITests: XCTestCase
-{
+class LoginAPITests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: LoginAPI!
@@ -10,21 +9,18 @@ class LoginAPITests: XCTestCase
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupLoginAPI()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupLoginAPI()
-    {
+    func setupLoginAPI() {
         sut = LoginAPI()
         
         testLogin = Seeds.UserInfo.user
@@ -32,8 +28,7 @@ class LoginAPITests: XCTestCase
     
     // MARK: - Test CRUD operations - Optional error
     
-    func testLoginWithError()
-    {
+    func testLoginWithError() {
         var userAccount: UserAccount?
         var error: UserStoreError?
          let expect = expectation(description: "Wait for loginUser() to return")
@@ -48,8 +43,7 @@ class LoginAPITests: XCTestCase
         XCTAssertNotNil(error, "loginUser() should return a error")
     }
     
-    func testValidUserLogin()
-    {
+    func testValidUserLogin() {
         var userAccount: UserAccount?
         var error: UserStoreError?
         let expect = expectation(description: "Wait for loginUser() to return")

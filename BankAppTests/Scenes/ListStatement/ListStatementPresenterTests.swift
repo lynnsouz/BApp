@@ -13,36 +13,31 @@
 @testable import BankApp
 import XCTest
 
-class ListStatementPresenterTests: XCTestCase
-{
+class ListStatementPresenterTests: XCTestCase {
     // MARK: Subject under test
     
     var sut: ListStatementPresenter!
     
     // MARK: Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupListStatementPresenter()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: Test setup
     
-    func setupListStatementPresenter()
-    {
+    func setupListStatementPresenter() {
         sut = ListStatementPresenter()
     }
     
     // MARK: Test doubles
     
-    class ListStatementDisplayLogicSpy: ListStatementDisplayLogic
-    {
+    class ListStatementDisplayLogicSpy: ListStatementDisplayLogic {
         
         var displayFetchedStatementCalled = false
         var displayUserAccountInfoCalled = false
@@ -58,8 +53,7 @@ class ListStatementPresenterTests: XCTestCase
     
     // MARK: Tests
     
-    func testDisplayFetchedStatementCalled()
-    {
+    func testDisplayFetchedStatementCalled() {
         // Given
         let spy = ListStatementDisplayLogicSpy()
         sut.viewController = spy
@@ -72,8 +66,7 @@ class ListStatementPresenterTests: XCTestCase
         XCTAssertTrue(spy.displayFetchedStatementCalled, "presentSomething(response:) should ask the view controller to display the result")
     }
     
-    func testDisplayUserAccountInfoCalled()
-    {
+    func testDisplayUserAccountInfoCalled() {
         // Given
         let spy = ListStatementDisplayLogicSpy()
         sut.viewController = spy

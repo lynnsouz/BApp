@@ -1,36 +1,31 @@
 @testable import BankApp
 import XCTest
 
-class LoginPresenterTests: XCTestCase
-{
+class LoginPresenterTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: LoginPresenter!
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupLoginPresenter()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupLoginPresenter()
-    {
+    func setupLoginPresenter() {
         sut = LoginPresenter()
     }
     
     // MARK: - Test doubles
     
-    class LoginDisplayLogicSpy: LoginDisplayLogic
-    {
+    class LoginDisplayLogicSpy: LoginDisplayLogic {
         // MARK: Method call expectations
         
         var displayUserAccountStatementCalled = false
@@ -48,8 +43,7 @@ class LoginPresenterTests: XCTestCase
     
     // MARK: - Tests
     
-    func testPresentFetchedOrdersShouldFormatFetchedOrdersForDisplay()
-    {
+    func testPresentFetchedOrdersShouldFormatFetchedOrdersForDisplay() {
         // Given
         let loginDisplayLogicSpy = LoginDisplayLogicSpy()
         sut.viewController = loginDisplayLogicSpy

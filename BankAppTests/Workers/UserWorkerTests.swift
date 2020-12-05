@@ -1,8 +1,7 @@
 @testable import BankApp
 import XCTest
 
-class UserWorkerTests: XCTestCase
-{
+class UserWorkerTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: UserWorker!
@@ -12,29 +11,25 @@ class UserWorkerTests: XCTestCase
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupUserWorker()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupUserWorker()
-    {
+    func setupUserWorker() {
         sut = UserWorker(loginStore: LoginStoreSpy())
         
         UserWorkerTests.loggedAccount = Seeds.UserInfo.loggedAccount
         UserWorkerTests.loginError = .CannotLogin("")
     }
     
-    class LoginStoreSpy: LoginAPI
-    {
+    class LoginStoreSpy: LoginAPI {
         // MARK: Method call expectations
         
         var fetchUserCalled = false
@@ -53,8 +48,7 @@ class UserWorkerTests: XCTestCase
         }
     }
     
-    func testFetchLoginShouldReturnLogin()
-    {
+    func testFetchLoginShouldReturnLogin() {
         // Given
         let loginMemStoreSpy = sut.loginStore as! LoginStoreSpy
         
@@ -76,8 +70,7 @@ class UserWorkerTests: XCTestCase
         XCTAssertNil(errorAccount, "loginUser() should return a error")
     }
     
-    func testFetchLoginShouldReturnError()
-    {
+    func testFetchLoginShouldReturnError() {
         // Given
         let loginMemStoreSpy = sut.loginStore as! LoginStoreSpy
         

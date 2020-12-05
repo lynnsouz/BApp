@@ -1,8 +1,7 @@
 @testable import BankApp
 import XCTest
 
-class LoginViewControllerTests: XCTestCase
-{
+class LoginViewControllerTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: LoginViewController!
@@ -10,39 +9,34 @@ class LoginViewControllerTests: XCTestCase
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         window = UIWindow()
         setupLoginViewController()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         window = nil
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupLoginViewController()
-    {
+    func setupLoginViewController() {
         let bundle = Bundle.main
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         sut = storyboard.instantiateViewController(withIdentifier: "LoginController") as? LoginViewController
         XCTAssertNotNil(sut,"Instantiating LoginViewController")
     }
     
-    func loadView()
-    {
+    func loadView() {
         window.addSubview(sut.view)
         RunLoop.current.run(until: Date())
     }
     
     // MARK: - Test doubles
     
-    class LoginBusinessLogicSpy: LoginBusinessLogic
-    {
+    class LoginBusinessLogicSpy: LoginBusinessLogic {
         // MARK: Method call expectations
         
         var loginButtonTappedCalled = false
@@ -54,8 +48,7 @@ class LoginViewControllerTests: XCTestCase
         }
     }
     
-    class LoginRouterSpy: LoginRouter
-    {
+    class LoginRouterSpy: LoginRouter {
         // MARK: Method call expectations
         
         var loginRouterCalled = false
@@ -71,8 +64,7 @@ class LoginViewControllerTests: XCTestCase
     
     // MARK: - Tests
     
-    func testShouldFailLoginWhenViewDidAppear()
-    {
+    func testShouldFailLoginWhenViewDidAppear() {
         // Given
         let loginBusinessLogicSpy = LoginBusinessLogicSpy()
         sut.interactor = loginBusinessLogicSpy
@@ -88,8 +80,7 @@ class LoginViewControllerTests: XCTestCase
         XCTAssertFalse(loginBusinessLogicSpy.loginButtonTappedCalled, "Should not login once no data was typed")
     }
     
-    func testShouldTryLoginWhenViewDidAppear()
-    {
+    func testShouldTryLoginWhenViewDidAppear() {
         // Given
         let loginBusinessLogicSpy = LoginBusinessLogicSpy()
         sut.interactor = loginBusinessLogicSpy
@@ -105,8 +96,7 @@ class LoginViewControllerTests: XCTestCase
         XCTAssertTrue(loginBusinessLogicSpy.loginButtonTappedCalled, "Should login")
     }
     
-    func testShouldRouteToSomewhereElse()
-    {
+    func testShouldRouteToSomewhereElse() {
         // Given
         let routerSpy = LoginRouterSpy()
         sut.router = routerSpy
@@ -118,8 +108,7 @@ class LoginViewControllerTests: XCTestCase
         XCTAssert(routerSpy.loginRouterCalled,"Redirect to other view")
     }
     
-    func testShouldNOTRouteToSomewhereElse()
-    {
+    func testShouldNOTRouteToSomewhereElse() {
         // Given
         let routerSpy = LoginRouterSpy()
         sut.router = routerSpy
@@ -130,8 +119,7 @@ class LoginViewControllerTests: XCTestCase
         XCTAssertFalse(routerSpy.loginRouterCalled,"Redirect to other view")
     }
     
-    func testViewWithShadows()
-    {
+    func testViewWithShadows() {
         let shadowColorBefore = sut.view.layer.shadowColor
         let shadowOpacityBefore = sut.view.layer.shadowOpacity
         let shadowOffsetBefore = sut.view.layer.shadowOffset

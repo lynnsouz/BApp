@@ -1,34 +1,29 @@
 @testable import BankApp
 import XCTest
 
-class StatementWorkerTests: XCTestCase
-{
+class StatementWorkerTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: StatementWorker!
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupUserWorker()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupUserWorker()
-    {
+    func setupUserWorker() {
         sut = StatementWorker(statementStore: StatementStoreSpy())
     }
     
-    class StatementStoreSpy: StatementStoreProtocol
-    {
+    class StatementStoreSpy: StatementStoreProtocol {
         
         // MARK: Method call expectations
         
@@ -42,8 +37,7 @@ class StatementWorkerTests: XCTestCase
         }
     }
     
-    func testFetchLoginShouldReturnLogin()
-    {
+    func testFetchLoginShouldReturnLogin() {
         // Given
         let statementsMemStoreSpy = sut.statementStore as! StatementStoreSpy
         

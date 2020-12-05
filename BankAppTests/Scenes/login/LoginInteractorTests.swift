@@ -1,36 +1,31 @@
 @testable import BankApp
 import XCTest
 
-class LoginInteractorTests: XCTestCase
-{
+class LoginInteractorTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: LoginInteractor!
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupLoginInteractor()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupLoginInteractor()
-    {
+    func setupLoginInteractor() {
         sut = LoginInteractor()
     }
     
     // MARK: - Test doubles
     
-    class LoginPresentationLogicSpy: LoginPresentationLogic
-    {
+    class LoginPresentationLogicSpy: LoginPresentationLogic {
         // MARK: Method call expectations
         weak var viewController: LoginDisplayLogic?
         var presentCreateLoginCalled = false
@@ -45,8 +40,7 @@ class LoginInteractorTests: XCTestCase
         }
     }
     
-    class LoginWorkerSpy: UserWorker
-    {
+    class LoginWorkerSpy: UserWorker {
         // MARK: Method call expectations
         
         var loginUserCalled = false
@@ -61,8 +55,7 @@ class LoginInteractorTests: XCTestCase
         
     }
     
-    class LoginAPISpy: LoginAPI
-    {
+    class LoginAPISpy: LoginAPI {
         // MARK: Method call expectations
         
         var apiLoginCalled = false
@@ -82,8 +75,7 @@ class LoginInteractorTests: XCTestCase
     
     // MARK: - Tests
     
-    func testFetchLoginShouldAskLoginWorkerToFetchLoginAndPresenterToFormatResult()
-    {
+    func testFetchLoginShouldAskLoginWorkerToFetchLoginAndPresenterToFormatResult() {
         // Given
         let loginPresentationLogicSpy = LoginPresentationLogicSpy()
         sut.presenter = loginPresentationLogicSpy

@@ -13,64 +13,69 @@
 @testable import BankApp
 import XCTest
 
-class ListStatementInteractorTests: XCTestCase
-{
-  // MARK: Subject under test
-  
-  var sut: ListStatementInteractor!
-  
-  // MARK: Test lifecycle
-  
-  override func setUp()
-  {
-    super.setUp()
-    setupListStatementInteractor()
-  }
-  
-  override func tearDown()
-  {
-    super.tearDown()
-  }
-  
-  // MARK: Test setup
-  
-  func setupListStatementInteractor()
-  {
-    sut = ListStatementInteractor()
-    sut.userAccount = Seeds.UserInfo.loggedAccount
-  }
-  
-  // MARK: Test doubles
-  
-  class ListStatementPresentationLogicSpy: ListStatementPresentationLogic
-  {
+class ListStatementInteractorTests: XCTestCase {
+    // MARK: Subject under test
     
+    var sut: ListStatementInteractor!
     
-    var presentFetchStatementCalled = false
-    var presentUserAccountCalled = false
+    // MARK: Test lifecycle
     
-    func presentFetchStatement(response: ListStatement.FetchStatement.Response) {
-        presentFetchStatementCalled = true
+    override func setUp() {
+        super.setUp()
+        setupListStatementInteractor()
     }
     
-    func presentUserAccount(response: ListStatement.UserAccountInfo.Response) {
-        presentUserAccountCalled = true
+    override func tearDown() {
+        super.tearDown()
     }
-  }
-  
-  // MARK: Tests
-  
-  func testDoSomething()
-  {
-    // Given
-    let spy = ListStatementPresentationLogicSpy()
-    sut.presenter = spy
-    let request = ListStatement.UserAccountInfo.Request()
     
-    // When
-    sut.fetchUserAccount(request: request)
+    // MARK: Test setup
     
-    // Then
-    XCTAssertTrue(spy.presentUserAccountCalled, "doSomething(request:) should ask the presenter to format the result")
-  }
+    func setupListStatementInteractor() {
+        sut = ListStatementInteractor()
+        sut.userAccount = Seeds.UserInfo.loggedAccount
+    }
+    
+    // MARK: Test doubles
+    
+    class ListStatementPresentationLogicSpy: ListStatementPresentationLogic {
+        
+        
+        var presentFetchStatementCalled = false
+        var presentUserAccountCalled = false
+        
+        func presentFetchStatement(response: ListStatement.FetchStatement.Response) {
+            presentFetchStatementCalled = true
+        }
+        
+        func presentUserAccount(response: ListStatement.UserAccountInfo.Response) {
+            presentUserAccountCalled = true
+        }
+    }
+    
+    // MARK: Tests
+    
+    func testDoSomething() {
+        // Given
+        let spy = ListStatementPresentationLogicSpy()
+        sut.presenter = spy
+        let request = ListStatement.UserAccountInfo.Request()
+        
+        // When
+        sut.fetchUserAccount(request: request)
+        
+        // Then
+        XCTAssertTrue(spy.presentUserAccountCalled, "doSomething(request:) should ask the presenter to format the result")
+    }
+    
+    func testFactory() {
+        // Given
+        let sut = ListStatementFactory()
+        
+        // When
+        let vc = sut.newListStatementViewController()
+        
+        // Then
+        assert(vc is ListStatementViewController)
+    }
 }

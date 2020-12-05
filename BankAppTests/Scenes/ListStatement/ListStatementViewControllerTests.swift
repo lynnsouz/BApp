@@ -13,8 +13,7 @@
 @testable import BankApp
 import XCTest
 
-class ListStatementViewControllerTests: XCTestCase
-{
+class ListStatementViewControllerTests: XCTestCase {
     // MARK: Subject under test
     
     var sut: ListStatementViewController!
@@ -22,39 +21,34 @@ class ListStatementViewControllerTests: XCTestCase
     
     // MARK: Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         window = UIWindow()
         setupListStatementViewController()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         window = nil
         super.tearDown()
     }
     
     // MARK: Test setup
     
-    func setupListStatementViewController()
-    {
+    func setupListStatementViewController() {
         let bundle = Bundle.main
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         sut = storyboard.instantiateViewController(withIdentifier: "ListStatementViewController") as? ListStatementViewController
         XCTAssertNotNil(sut, "Should not be null")
     }
     
-    func loadView()
-    {
+    func loadView() {
         window.addSubview(sut.view)
         RunLoop.current.run(until: Date())
     }
     
     // MARK: Test doubles
     
-    class ListStatementBusinessLogicSpy: ListStatementBusinessLogic
-    {
+    class ListStatementBusinessLogicSpy: ListStatementBusinessLogic {
         
         var fetchUserAccount = false
         var fetchStatementCalled = false
@@ -68,8 +62,7 @@ class ListStatementViewControllerTests: XCTestCase
         }
     }
     
-    class TableViewSpy: UITableView
-    {
+    class TableViewSpy: UITableView {
         // MARK: Method call expectations
         
         var reloadDataCalled = false
@@ -84,8 +77,7 @@ class ListStatementViewControllerTests: XCTestCase
     
     // MARK: Tests
     
-    func testShouldFetchStatementWhenViewIsLoaded()
-    {
+    func testShouldFetchStatementWhenViewIsLoaded() {
         // Given
         let spy = ListStatementBusinessLogicSpy()
         sut.interactor = spy
@@ -97,8 +89,7 @@ class ListStatementViewControllerTests: XCTestCase
         XCTAssertTrue(spy.fetchStatementCalled, "viewDidLoad() should ask the interactor to fetchStatementCalled")
     }
     
-    func testShouldFetchUserAccountWhenViewIsLoaded()
-    {
+    func testShouldFetchUserAccountWhenViewIsLoaded() {
         // Given
         let spy = ListStatementBusinessLogicSpy()
         sut.interactor = spy
@@ -110,8 +101,7 @@ class ListStatementViewControllerTests: XCTestCase
         XCTAssertTrue(spy.fetchUserAccount, "viewDidLoad() should ask the interactor to fetchUserAccount")
     }
     
-    func testNumberOfRowsInAnySectionShouldEqaulNumberOfStatementToDisplay()
-    {
+    func testNumberOfRowsInAnySectionShouldEqaulNumberOfStatementToDisplay() {
         // Given
         let tableViewSpy = TableViewSpy()
         sut.tableView = tableViewSpy
@@ -129,8 +119,7 @@ class ListStatementViewControllerTests: XCTestCase
     
     
     /*
-    func testTableViewCellToDisplay()
-    {
+    func testTableViewCellToDisplay() {
         // Given
         
         let tableView = UITableView()

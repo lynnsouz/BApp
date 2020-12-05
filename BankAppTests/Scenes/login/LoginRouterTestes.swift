@@ -1,36 +1,31 @@
 @testable import BankApp
 import XCTest
 
-class LoginRouterTests: XCTestCase
-{
+class LoginRouterTests: XCTestCase {
     // MARK: - Subject under test
     
     var sut: LoginRouter!
     
     // MARK: - Test lifecycle
     
-    override func setUp()
-    {
+    override func setUp() {
         super.setUp()
         setupLoginRouter()
     }
     
-    override func tearDown()
-    {
+    override func tearDown() {
         super.tearDown()
     }
     
     // MARK: - Test setup
     
-    func setupLoginRouter()
-    {
+    func setupLoginRouter() {
         sut = LoginRouter()
     }
     
     // MARK: - Test doubles
     
-    class LoginDataStoreSPY: LoginDataStore
-    {
+    class LoginDataStoreSPY: LoginDataStore {
         var updatetdUserAccout = false
         var userAccount: UserAccount? {
             didSet {
@@ -41,8 +36,7 @@ class LoginRouterTests: XCTestCase
     
     // MARK: - Tests
     
-    func testPresentFetchedOrdersShouldFormatFetchedOrdersForDisplay()
-    {
+    func testPresentFetchedOrdersShouldFormatFetchedOrdersForDisplay() {
         // Given
         let spy = LoginDataStoreSPY()
         spy.userAccount = Seeds.UserInfo.loggedAccount
