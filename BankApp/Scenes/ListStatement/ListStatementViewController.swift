@@ -17,36 +17,20 @@ protocol ListStatementDisplayLogic: class {
     func displayFetchedStatement(viewModel: ListStatement.FetchStatement.ViewModel)
 }
 
-class ListStatementViewController: UIViewController, ListStatementDisplayLogic {
+class ListStatementViewController: BaseViewController, ListStatementDisplayLogic {
     
     var interactor: ListStatementBusinessLogic?
     var router: (NSObjectProtocol & ListStatementRoutingLogic & ListStatementDataPassing)?
     
     // MARK: Object lifecycle
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
+    override init(configurator: ConfiguratorProtocol = ListStatementConfigurator()) {
+        super.init(configurator: configurator)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
-    }
-    
-    // MARK: Setup
-    
-    private func setup() {
-        let viewController = self
-        let interactor = ListStatementInteractor()
-        let presenter = ListStatementPresenter()
-        let router = ListStatementRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
+        configurator?.config(self)
     }
     
     // MARK: Routing
@@ -64,8 +48,9 @@ class ListStatementViewController: UIViewController, ListStatementDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showUserAccountInfo()
         startLoadingAnimation()
+        setupTableView()
+        showUserAccountInfo()
         fetchStatement()
     }
     
@@ -90,9 +75,7 @@ class ListStatementViewController: UIViewController, ListStatementDisplayLogic {
     
     func displayFetchedStatement(viewModel: ListStatement.FetchStatement.ViewModel) {
         self.displayedStatement = viewModel.displayedStatement
-        viewModel.displayedStatement.forEach({self.displayedStatementSection.append($0.dateAsDate.monthAndYear)})
-        self.displayedStatementSection = Array(Set(self.displayedStatementSection))
-        self.displayedStatementSection.sort(by: {Date(fromStringPTBR: $0, format: "LLLL / yyyy")! > Date(fromStringPTBR: $1, format: "LLLL / yyyy")!})
+        self.displayedStatementSection = viewModel.displayedStatementSection
         stopLoadingAnimation()
         tableView.reloadData()
     }
@@ -130,6 +113,12 @@ class ListStatementViewController: UIViewController, ListStatementDisplayLogic {
     // MARK: - Table view, data source and delegate
     @IBOutlet weak var tableView: UITableView!
     
+    func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(UINib(nibName: "StatementTableViewCell", bundle: nil), forCellReuseIdentifier: "StatementTableViewCell")
+    }
 }
 
 extension ListStatementViewController: UITableViewDataSource, UITableViewDelegate {
@@ -150,7 +139,7 @@ extension ListStatementViewController: UITableViewDataSource, UITableViewDelegat
         let label = UILabel()
         label.frame = CGRect.init(x: 0, y: 0, width: headerView.frame.width-16, height: headerView.frame.height-16)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = displayedStatementSection.get(at: section)!
+        label.text = displayedStatementSection.get(at: section) ?? ""
         label.font = UIFont.systemFont(ofSize: 17.0)
         
         headerView.addSubview(label)

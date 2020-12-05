@@ -54,7 +54,10 @@
 		3CFC328C248342CB002E9973 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC32652481A262002E9973 /* Array.swift */; };
 		3CFC328E248342CB002E9973 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC32762482CC3F002E9973 /* Date.swift */; };
 		470F753CF83100F4510158F3 /* Pods_BankAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B29B30E231853AEF8A6140 /* Pods_BankAppTests.framework */; };
-		5008739B257BBAFA00A2BBBB /* ListStatementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008739A257BBAFA00A2BBBB /* ListStatementFactory.swift */; };
+		500873AF257BE67500A2BBBB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500873AE257BE67500A2BBBB /* BaseViewController.swift */; };
+		500873C1257BF01300A2BBBB /* ListStatementConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500873C0257BF01300A2BBBB /* ListStatementConfigurator.swift */; };
+		50248EFC257BF77000A9BC32 /* ListStatementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50248EFB257BF77000A9BC32 /* ListStatementViewController.xib */; };
+		50248F02257BF9C800A9BC32 /* StatementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50248F01257BF9C800A9BC32 /* StatementTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,7 +120,10 @@
 		3CFC327C2482FC23002E9973 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
 		3CFC328024833CC2002E9973 /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		3CFC328324833DCD002E9973 /* UserWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorkerTests.swift; sourceTree = "<group>"; };
-		5008739A257BBAFA00A2BBBB /* ListStatementFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStatementFactory.swift; sourceTree = "<group>"; };
+		500873AE257BE67500A2BBBB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		500873C0257BF01300A2BBBB /* ListStatementConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStatementConfigurator.swift; sourceTree = "<group>"; };
+		50248EFB257BF77000A9BC32 /* ListStatementViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListStatementViewController.xib; sourceTree = "<group>"; };
+		50248F01257BF9C800A9BC32 /* StatementTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatementTableViewCell.xib; sourceTree = "<group>"; };
 		8E9CF2BD0BFEEC0158D44AD2 /* Pods-BankApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankApp.release.xcconfig"; path = "Target Support Files/Pods-BankApp/Pods-BankApp.release.xcconfig"; sourceTree = "<group>"; };
 		981C94150BCA255E0ACFEA41 /* Pods-BankAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankAppTests.release.xcconfig"; path = "Target Support Files/Pods-BankAppTests/Pods-BankAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED1E0D171F054C94F58B8F7C /* Pods-BankAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankAppTests.debug.xcconfig"; path = "Target Support Files/Pods-BankAppTests/Pods-BankAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,8 +204,10 @@
 		3C3FF79D2481486D0024B850 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				50248EFF257BF95E00A9BC32 /* Components */,
 				3CFC32492481984A002E9973 /* ListStatement */,
 				3C3FF79E248148970024B850 /* Login */,
+				500873AE257BE67500A2BBBB /* BaseViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -274,8 +282,8 @@
 				3CFC325A24819F58002E9973 /* ListStatementRouter.swift */,
 				3CFC325B24819F58002E9973 /* ListStatementModels.swift */,
 				3CFC325D24819F58002E9973 /* ListStatementInteractor.swift */,
-				3CFC324724818E43002E9973 /* StatementTableViewCell.swift */,
-				5008739A257BBAFA00A2BBBB /* ListStatementFactory.swift */,
+				500873C0257BF01300A2BBBB /* ListStatementConfigurator.swift */,
+				50248EFB257BF77000A9BC32 /* ListStatementViewController.xib */,
 			);
 			path = ListStatement;
 			sourceTree = "<group>";
@@ -316,6 +324,23 @@
 				3C7D4A832484561B0037174D /* StatementWorker.swift */,
 			);
 			path = Workers;
+			sourceTree = "<group>";
+		};
+		50248EFF257BF95E00A9BC32 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				50248F00257BF97800A9BC32 /* Cells */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		50248F00257BF97800A9BC32 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3CFC324724818E43002E9973 /* StatementTableViewCell.swift */,
+				50248F01257BF9C800A9BC32 /* StatementTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		C9AF6F0BD6C9A419A87EC3F2 /* Frameworks */ = {
@@ -423,8 +448,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C3FF788248146F90024B850 /* LaunchScreen.storyboard in Resources */,
+				50248F02257BF9C800A9BC32 /* StatementTableViewCell.xib in Resources */,
 				3C3FF785248146F90024B850 /* Assets.xcassets in Resources */,
 				3CFC32792482EC75002E9973 /* README.md in Resources */,
+				50248EFC257BF77000A9BC32 /* ListStatementViewController.xib in Resources */,
 				3C3FF783248146F30024B850 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,10 +540,10 @@
 				3CFC322B24814A1D002E9973 /* LoginPresenter.swift in Sources */,
 				3CFC32752482B6EE002E9973 /* UIView.swift in Sources */,
 				3CFC326124819F58002E9973 /* ListStatementModels.swift in Sources */,
+				500873AF257BE67500A2BBBB /* BaseViewController.swift in Sources */,
 				3CFC323124814A1D002E9973 /* LoginModels.swift in Sources */,
 				3CFC326324819F58002E9973 /* ListStatementInteractor.swift in Sources */,
 				3CFC326224819F58002E9973 /* ListStatementViewController.swift in Sources */,
-				5008739B257BBAFA00A2BBBB /* ListStatementFactory.swift in Sources */,
 				3CFC3257248199C7002E9973 /* StatementModels.swift in Sources */,
 				3CFC326F2481B334002E9973 /* StatementAPI.swift in Sources */,
 				3CFC322F24814A1D002E9973 /* LoginRouter.swift in Sources */,
@@ -531,6 +558,7 @@
 				3CFC326024819F58002E9973 /* ListStatementRouter.swift in Sources */,
 				3C3FF77E248146F30024B850 /* SceneDelegate.swift in Sources */,
 				3CFC32692481A892002E9973 /* StatementWorker.swift in Sources */,
+				500873C1257BF01300A2BBBB /* ListStatementConfigurator.swift in Sources */,
 				3CFC32722482AB31002E9973 /* ViewController.swift in Sources */,
 				3CFC323524814A1D002E9973 /* LoginInteractor.swift in Sources */,
 				3CFC324824818E43002E9973 /* StatementTableViewCell.swift in Sources */,

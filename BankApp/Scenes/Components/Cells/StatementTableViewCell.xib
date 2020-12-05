@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StatementTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StatementTableViewCell" rowHeight="100" id="ATk-nH-rN1" customClass="StatementTableViewCell" customModule="BankApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ATk-nH-rN1" id="7Z2-hu-Hdl">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lug-BS-UGs">
+                        <rect key="frame" x="16" y="8" width="382" height="80"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tSJ-bM-hF3">
+                                <rect key="frame" x="8" y="4" width="366" height="76"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xqY-vH-0Qa">
+                                        <rect key="frame" x="0.0" y="0.0" width="366" height="38"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pagamento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqT-pV-lTi">
+                                                <rect key="frame" x="0.0" y="0.0" width="183" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" red="0.6588235294" green="0.70588235290000001" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/12/2018" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXo-jH-Qwa">
+                                                <rect key="frame" x="183" y="0.0" width="183" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.6588235294" green="0.70588235290000001" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="YYj-eH-cVc">
+                                        <rect key="frame" x="0.0" y="38" width="366" height="38"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conta de luz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0y-bi-oxr">
+                                                <rect key="frame" x="0.0" y="0.0" width="183" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" red="0.28235294119999998" green="0.3294117647" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$1,00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJN-vH-5Ea">
+                                                <rect key="frame" x="183" y="0.0" width="183" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" red="0.28235294119999998" green="0.3294117647" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
+                        <constraints>
+                            <constraint firstItem="tSJ-bM-hF3" firstAttribute="top" secondItem="Lug-BS-UGs" secondAttribute="top" constant="4" id="GCY-Jw-Myx"/>
+                            <constraint firstAttribute="bottom" secondItem="tSJ-bM-hF3" secondAttribute="bottom" id="UcL-qV-9gN"/>
+                            <constraint firstAttribute="height" constant="80" id="bZQ-YF-aZx"/>
+                            <constraint firstAttribute="trailing" secondItem="tSJ-bM-hF3" secondAttribute="trailing" constant="8" id="f7z-ru-nz7"/>
+                            <constraint firstItem="tSJ-bM-hF3" firstAttribute="leading" secondItem="Lug-BS-UGs" secondAttribute="leading" constant="8" id="ywn-6K-ew9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Lug-BS-UGs" firstAttribute="leading" secondItem="7Z2-hu-Hdl" secondAttribute="leading" constant="16" id="8Su-pN-7bc"/>
+                    <constraint firstItem="Lug-BS-UGs" firstAttribute="top" secondItem="7Z2-hu-Hdl" secondAttribute="top" constant="8" id="EYU-Wg-ZPF"/>
+                    <constraint firstAttribute="bottom" secondItem="Lug-BS-UGs" secondAttribute="bottom" constant="16" id="Rrz-1g-IJy"/>
+                    <constraint firstAttribute="trailing" secondItem="Lug-BS-UGs" secondAttribute="trailing" constant="16" id="kk3-fB-eyS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="jXo-jH-Qwa" id="nNE-bI-jqG"/>
+                <outlet property="descLabel" destination="M0y-bi-oxr" id="5k5-Yf-KUG"/>
+                <outlet property="shadowView" destination="Lug-BS-UGs" id="N5a-yE-WY0"/>
+                <outlet property="titleLabel" destination="ZqT-pV-lTi" id="Fwl-3k-ia7"/>
+                <outlet property="valueLabel" destination="dJN-vH-5Ea" id="s9s-dg-j8j"/>
+            </connections>
+            <point key="canvasLocation" x="-222" y="62"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

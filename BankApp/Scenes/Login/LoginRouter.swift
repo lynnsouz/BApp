@@ -27,10 +27,9 @@ class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing {
     // MARK: Routing
     
     func routeToStatement(segue: UIStoryboardSegue?) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: "ListStatementViewController") as! ListStatementViewController
-        var destinationDS = destinationVC.router!.dataStore!
-        passDataToStatement(source: dataStore!, destination: &destinationDS)
+        let destinationVC = ListStatementViewController()
+        guard var destinationDS = destinationVC.router?.dataStore, let dataStore = dataStore else { return }
+        passDataToStatement(source: dataStore, destination: &destinationDS)
         navigateToStatement(source: viewController, destination: destinationVC)
     }
     

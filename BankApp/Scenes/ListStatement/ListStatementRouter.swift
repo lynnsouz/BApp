@@ -25,37 +25,15 @@ class ListStatementRouter: NSObject, ListStatementRoutingLogic, ListStatementDat
   var dataStore: ListStatementDataStore?
   
   // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
     
     func routeBackToLogin() {
-        navigateToLogin(source: viewController!)
+        guard let viewController = viewController else { return }
+        navigateToLogin(source: viewController)
     }
 
   // MARK: Navigation
   
-  func navigateToLogin(source: ListStatementViewController)
-  {
+  func navigateToLogin(source: ListStatementViewController) {
     source.navigationController?.popViewController(animated: true)
   }
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: ListStatementDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
 }

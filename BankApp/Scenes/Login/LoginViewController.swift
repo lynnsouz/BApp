@@ -62,6 +62,9 @@ class LoginViewController: UIViewController, LoginDisplayLogic, UITextFieldDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        _ = userCompleteInformDada()
+        loginTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     // MARK: Text fields
@@ -72,26 +75,48 @@ class LoginViewController: UIViewController, LoginDisplayLogic, UITextFieldDeleg
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {        
         textField.resignFirstResponder()
         if textField == loginTextField {
+            guard let user = loginTextField.text, !user.isEmpty else { return false }
             passwordTextField.becomeFirstResponder()
         } else if textField == passwordTextField {
-            //press Login button
+            guard userCompleteInformDada() else { return false }
+            passwordTextField.resignFirstResponder()
+            createLogin()
         }
         return true
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        _ = userCompleteInformDada()
+    }
+    
     // MARK: Contact info
     
-    @IBAction func loginButtonTapped(_ sender: Any) {
+    func userCompleteInformDada() -> Bool {
         guard let user = loginTextField.text, !user.isEmpty,
         let password = passwordTextField.text, !password.isEmpty else {
-            
-            return
+            loginButton.alpha = 0.5
+            loginButton.isEnabled = false
+            return false
         }
+        loginButton.alpha = 1.0
+        loginButton.isEnabled = true
+        return true
+    }
+    
+    @IBOutlet weak var loginButton: UIButton!
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        createLogin()
+    }
+    
+    func createLogin() {
+        guard let user = loginTextField.text, let password = passwordTextField.text, userCompleteInformDada() else { return }
+        startLoadingAnimation()
         let request = Login.CreateLogin.Request(loginFromFields: Login.LoginFromFields(login: user, password: password))
         interactor?.createLogin(request: request)
     }
     
     func displayUserAccountStatement(viewModel: Login.CreateLogin.ViewModel) {
+        stopLoadingAnimation()
         if viewModel.userAccount != nil {
             router?.routeToStatement(segue: nil)
         } else if let error = viewModel.error {
@@ -102,7 +127,8 @@ class LoginViewController: UIViewController, LoginDisplayLogic, UITextFieldDeleg
     // MARK: Error handling
     
     func displayError(viewModel: Login.CreateLogin.Response) {
-        let alertController = UIAlertController(title: "Ops", message: viewModel.error!.localizedDescription, preferredStyle: .alert)
+        guard let error = viewModel.error else { return }
+        let alertController = UIAlertController(title: "Ops", message: error.localizedDescription, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(alertAction)
         showDetailViewController(alertController, sender: nil)

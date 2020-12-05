@@ -54,7 +54,13 @@ class ListStatementPresenter: ListStatementPresentationLogic {
             let value = currencyFormatter.string(from: NSNumber(value: $0.value))!
             displayedStatement.append(ListStatement.FetchStatement.ViewModel.DisplayedStatement(title: title, desc: desc, date: date, value: value))
         })
-        viewController?.displayFetchedStatement(viewModel: ListStatement.FetchStatement.ViewModel(displayedStatement: displayedStatement))
+        var displayedStatementSection = [String]()
+        displayedStatement.forEach({displayedStatementSection.append($0.dateAsDate.monthAndYear)})
+        displayedStatementSection = Array(Set(displayedStatementSection))
+        displayedStatementSection.sort(by: {Date(fromStringPTBR: $0, format: "LLLL / yyyy")! > Date(fromStringPTBR: $1, format: "LLLL / yyyy")!})
+        
+        let viewModel = ListStatement.FetchStatement.ViewModel(displayedStatement: displayedStatement, displayedStatementSection: displayedStatementSection)
+        viewController?.displayFetchedStatement(viewModel: viewModel)
     }
     
     func presentUserAccount(response: ListStatement.UserAccountInfo.Response) {

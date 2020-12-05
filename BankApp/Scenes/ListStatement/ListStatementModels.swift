@@ -16,15 +16,11 @@ enum ListStatement {
     // MARK: Use cases
     
     enum FetchStatement {
-        struct Request
-        {
-        }
-        struct Response
-        {
+        struct Request { }
+        struct Response {
             var statements: [Statement]
         }
-        struct ViewModel
-        {
+        struct ViewModel {
             struct DisplayedStatement
             {
                 var title: String
@@ -33,6 +29,7 @@ enum ListStatement {
                 var value: String
             }
             var displayedStatement: [DisplayedStatement]
+            var displayedStatementSection: [String]
         }
     }
     

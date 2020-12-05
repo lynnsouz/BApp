@@ -68,6 +68,7 @@ class ListStatementInteractorTests: XCTestCase {
         XCTAssertTrue(spy.presentUserAccountCalled, "doSomething(request:) should ask the presenter to format the result")
     }
     
+    /*
     func testFactory() {
         // Given
         let sut = ListStatementFactory()
@@ -77,5 +78,5 @@ class ListStatementInteractorTests: XCTestCase {
         
         // Then
         assert(vc is ListStatementViewController)
-    }
+    } */
 }
