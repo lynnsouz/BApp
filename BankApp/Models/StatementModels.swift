@@ -12,8 +12,7 @@
 
 import UIKit
 
-struct Statement: Codable
-{
+struct Statement: Codable {
     var title: String
     var desc: String
     var date: String

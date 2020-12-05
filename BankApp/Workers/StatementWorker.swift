@@ -12,16 +12,14 @@
 
 import UIKit
 
-class StatementWorker
-{
+class StatementWorker {
     var statementStore: StatementStoreProtocol
     
     init(statementStore: StatementStoreProtocol) {
         self.statementStore = statementStore
     }
     
-    func fetchOrders(completionHandler: @escaping ([Statement]) -> Void)
-    {
+    func fetchOrders(completionHandler: @escaping ([Statement]) -> Void) {
         statementStore.fetchStatement { (statement: [Statement]) -> Void in
             let orders = statement
             DispatchQueue.main.async {
@@ -32,7 +30,6 @@ class StatementWorker
     
 }
 
-protocol StatementStoreProtocol
-{
+protocol StatementStoreProtocol {
     func fetchStatement(completionHandler: @escaping ([Statement]) -> Void)
 }

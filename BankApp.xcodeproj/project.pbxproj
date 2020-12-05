@@ -54,6 +54,7 @@
 		3CFC328C248342CB002E9973 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC32652481A262002E9973 /* Array.swift */; };
 		3CFC328E248342CB002E9973 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC32762482CC3F002E9973 /* Date.swift */; };
 		470F753CF83100F4510158F3 /* Pods_BankAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B29B30E231853AEF8A6140 /* Pods_BankAppTests.framework */; };
+		5008739B257BBAFA00A2BBBB /* ListStatementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008739A257BBAFA00A2BBBB /* ListStatementFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		3CFC327C2482FC23002E9973 /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
 		3CFC328024833CC2002E9973 /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		3CFC328324833DCD002E9973 /* UserWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWorkerTests.swift; sourceTree = "<group>"; };
+		5008739A257BBAFA00A2BBBB /* ListStatementFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStatementFactory.swift; sourceTree = "<group>"; };
 		8E9CF2BD0BFEEC0158D44AD2 /* Pods-BankApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankApp.release.xcconfig"; path = "Target Support Files/Pods-BankApp/Pods-BankApp.release.xcconfig"; sourceTree = "<group>"; };
 		981C94150BCA255E0ACFEA41 /* Pods-BankAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankAppTests.release.xcconfig"; path = "Target Support Files/Pods-BankAppTests/Pods-BankAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED1E0D171F054C94F58B8F7C /* Pods-BankAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankAppTests.debug.xcconfig"; path = "Target Support Files/Pods-BankAppTests/Pods-BankAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				3CFC325B24819F58002E9973 /* ListStatementModels.swift */,
 				3CFC325D24819F58002E9973 /* ListStatementInteractor.swift */,
 				3CFC324724818E43002E9973 /* StatementTableViewCell.swift */,
+				5008739A257BBAFA00A2BBBB /* ListStatementFactory.swift */,
 			);
 			path = ListStatement;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				3CFC323124814A1D002E9973 /* LoginModels.swift in Sources */,
 				3CFC326324819F58002E9973 /* ListStatementInteractor.swift in Sources */,
 				3CFC326224819F58002E9973 /* ListStatementViewController.swift in Sources */,
+				5008739B257BBAFA00A2BBBB /* ListStatementFactory.swift in Sources */,
 				3CFC3257248199C7002E9973 /* StatementModels.swift in Sources */,
 				3CFC326F2481B334002E9973 /* StatementAPI.swift in Sources */,
 				3CFC322F24814A1D002E9973 /* LoginRouter.swift in Sources */,

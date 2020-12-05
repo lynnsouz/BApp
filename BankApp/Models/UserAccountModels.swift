@@ -12,8 +12,7 @@
 
 import UIKit
 
-struct UserAccount: Equatable, Decodable
-{
+struct UserAccount: Equatable, Decodable {
     var userId: Int
     var name: String
     var bankAccount: String
@@ -21,8 +20,7 @@ struct UserAccount: Equatable, Decodable
     var balance: Double
 }
 
-func ==(lhs: UserAccount, rhs: UserAccount) -> Bool
-{
+func ==(lhs: UserAccount, rhs: UserAccount) -> Bool {
     return lhs.userId == rhs.userId
 }
 
@@ -31,8 +29,7 @@ struct User: Equatable, Decodable {
     var password: String
 }
 
-func ==(lhs: User, rhs: User) -> Bool
-{
+func ==(lhs: User, rhs: User) -> Bool {
     return lhs.user == rhs.user && lhs.password == rhs.password
 }
 
@@ -41,7 +38,6 @@ struct UserError: Equatable, Decodable {
     var message: String?
 }
 
-func ==(lhs: UserError, rhs: UserError) -> Bool
-{
+func ==(lhs: UserError, rhs: UserError) -> Bool {
     return lhs.code == rhs.code
 }

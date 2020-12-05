@@ -7,24 +7,20 @@
 //
 
 import Foundation
-class UserWorker
-{
+class UserWorker {
     var loginStore: LoginStoreProtocol
     
-    init(loginStore: LoginStoreProtocol)
-    {
+    init(loginStore: LoginStoreProtocol) {
         self.loginStore = loginStore
     }
 }
 
-protocol LoginStoreProtocol
-{
+protocol LoginStoreProtocol {
     func loginUser(_ user: User, completionHandler: @escaping (UserAccount?, UserStoreError?) -> Void)
 }
 
 // MARK: - User store CRUD operation errors
 
-enum UserStoreError: Error
-{
+enum UserStoreError: Error {
     case CannotLogin(String)
 }
